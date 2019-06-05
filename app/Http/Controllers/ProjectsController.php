@@ -19,5 +19,6 @@ class ProjectsController extends Controller
 		// persist
 		Project::create(request(['title', 'description']));
 		// redirect
+		return redirect('/projects');
     }
 }
