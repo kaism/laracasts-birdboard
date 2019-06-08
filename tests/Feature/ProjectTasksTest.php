@@ -15,8 +15,10 @@ class ProjectTasksTest extends TestCase
     public function a_project_can_have_tasks()
     {
         $this->signIn();
-        $project = factory(Project::class)->create(['owner_id' => auth()->id()]);
 
+        $project = auth()->user()->projects()->create(
+            factory(Project::class)->raw()
+        );
         $this->post($project->path() . '/tasks', ['body' => 'Test task']);
 
         $this->get($project->path())
