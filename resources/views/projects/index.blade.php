@@ -1,11 +1,14 @@
 @extends ('layouts.app')
 
 @section('content')
-	<div class="flex items-center mb-3">
-		<a href="/projects/create">New Project</a>
-	</div>
+	<header class="flex items-center mb-3 py-4">
+		<div class="flex justify-between items-center w-full">
+			<h2 class="text-grey text-sm font-normal">My Projects</h2>
+			<a href="/projects/create" class="text-grey no-underline">New Project</a>
+		</div>
+	</header>
 
-	<div class="flex flex-wrap -mx-3">
+	<main class="flex flex-wrap -mx-3">
 		@forelse ($projects as $project)
 			<div class="w-1/3 px-3 pb-6">
 				<div class="bg-white p-5 rounded shadow" style="height: 200px;">
@@ -16,6 +19,6 @@
 		@empty
 			<div>No projects yet.</div>
 		@endforelse
-	</div>
+	</main>
 
 @endsection
