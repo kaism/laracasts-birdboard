@@ -60,17 +60,16 @@ class ProjectTasksTest extends TestCase
     /** @test */
     public function a_task_can_be_updated()
     {
-        $this->withoutExceptionHandling();
-
         $project = app(ProjectFactory::class)
-            ->ownedBy($this->signIn())
             ->withTasks(1)
             ->create();
 
-        $this->patch($project->path() . '/tasks/' . $project->tasks[0]->id, [
-            'body' => 'changed',
-            'completed' => true
-        ]);
+        $this->actingAs($project->owner)
+            ->patch($project->tasks[0]->path(), [
+                'body' => 'changed',
+                'completed' => true
+            ]);
+
         $this->assertDatabaseHas('tasks', [
             'body' => 'changed',
             'completed' => true
