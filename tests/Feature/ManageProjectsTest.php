@@ -19,6 +19,7 @@ class ManageProjectsTest extends TestCase
 
         $this->get('/projects')->assertRedirect('login');
         $this->get('/projects/create')->assertRedirect('login');
+        $this->get('/projects/edit')->assertRedirect('login');          // this is wrong (/projects/{project}/edit)
         $this->get($project->path())->assertRedirect('login');
         $this->post('/projects', $project->toArray())->assertRedirect('login');
     }
@@ -56,6 +57,8 @@ class ManageProjectsTest extends TestCase
                 'notes' => 'Changed'
             ])
             ->assertRedirect($project->path());
+
+        $this->get($project->path().'/edit')->assertOk();
 
         $this->assertDatabaseHas('projects', $attributes);
     }
