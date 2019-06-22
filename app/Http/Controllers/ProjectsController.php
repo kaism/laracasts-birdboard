@@ -48,8 +48,8 @@ class ProjectsController extends Controller
     protected function validateRequest()
     {
         return request()->validate([
-            'title' => 'sometimes|required',
-            'description' => 'sometimes|required',
+            'title' => 'required',
+            'description' => 'required',
             'notes' => 'min:3'
         ]);
     }
