@@ -13,7 +13,7 @@ class UpdateProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return Gate::allows('update', $this->route('project'));
+        return Gate::allows('update', $this->project());
     }
 
     /**
@@ -28,5 +28,15 @@ class UpdateProjectRequest extends FormRequest
             'description' => 'sometimes|required',
             'notes' => 'nullable'
         ];
+    }
+
+    public function project()
+    {
+        return $this->route('project');
+    }
+
+    public function persist()
+    {
+        $this->project()->update($this->validated());
     }
 }
