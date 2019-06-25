@@ -39,8 +39,8 @@ class ProjectsController extends Controller
 
     public function update(UpdateProjectRequest $request)
     {
-        $request->persist();
-        return redirect($request->project()->path());
+        $request->save();
+        return redirect($request->save()->path());
     }
 
     protected function validateRequest()

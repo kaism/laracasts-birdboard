@@ -36,8 +36,12 @@ class UpdateProjectRequest extends FormRequest
         return Project::findOrFail($this->route('project'));
     }
 
-    public function persist()
+    public function save()
     {
-        $this->project()->update($this->validated());
+        $project = $this->project();
+
+        $project->update($this->validated());
+
+        return $project;
     }
 }
