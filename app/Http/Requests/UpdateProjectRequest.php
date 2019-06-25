@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Project;
 
 class UpdateProjectRequest extends FormRequest
 {
@@ -32,7 +33,7 @@ class UpdateProjectRequest extends FormRequest
 
     public function project()
     {
-        return $this->route('project');
+        return Project::findOrFail($this->route('project'));
     }
 
     public function persist()
