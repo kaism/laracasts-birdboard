@@ -38,10 +38,6 @@ class UpdateProjectRequest extends FormRequest
 
     public function save()
     {
-        $project = $this->project();
-
-        $project->update($this->validated());
-
-        return $project;
+        return tap($this->project())->update($this->validated());
     }
 }
