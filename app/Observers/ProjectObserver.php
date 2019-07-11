@@ -29,11 +29,5 @@ class ProjectObserver
         $this->recordActivity($project, 'updated');
     }
 
-    protected function recordActivity($project, $type)
-    {
-        Activity::create([
-            'project_id' => $project->id,
-            'description' => $type
-        ]);
-    }
+
 }
