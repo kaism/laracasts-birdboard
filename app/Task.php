@@ -20,6 +20,16 @@ class Task extends Model
                 'description' => 'created_task'
             ]);
         });
+
+        static::updated(function ($task) {
+            if (! $task->completed) return;
+
+            Activity::create([
+                'project_id' => $task->project->id,
+                'description' => 'completed_task'
+            ]);
+        });
+
     }
 
 
